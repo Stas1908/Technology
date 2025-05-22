@@ -17,7 +17,8 @@ def write_data(data):
 
 @app.route('/')
 def home():
-    return "Лабораторна №2. CRUD-сервер працює на Render!"
+    data = read_data()
+    return jsonify(data)
 
 @app.route('/items', methods=['GET'])
 def get_items():
