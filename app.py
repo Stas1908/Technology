@@ -18,7 +18,13 @@ class Item(db.Model):
 @app.route('/')
 def home():
     items = Item.query.all()
-    return jsonify([{'id': i.id, 'data': i.data} for i in items])
+    items_list = "<ul>"
+    for i in items:
+        items_list += f"<li>{i.id}: {i.data}</li>"
+    items_list += "</ul>"
+    return f"<h1>Список елементів</h1>{items_list}"
+
+
 
 @app.route('/items', methods=['GET'])
 def get_items():
